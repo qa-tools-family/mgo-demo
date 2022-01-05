@@ -66,16 +66,16 @@ func getCollClientByOpen(ctx context.Context, mongostr string) *qmgo.QmgoClient 
 func main()  {
 	ctx := context.Background()
 
-	//coll := getCollectionByBasic(ctx, "mongodb://localhost:27017")
-	//logger.Info("collection name: ", coll.GetCollectionName())
+	coll := getCollectionByBasic(ctx, "mongodb://localhost:27017")
+	logger.Info("collection name: ", coll.GetCollectionName())
 
 	client := getDBClientByOpen(ctx, "mongodb://localhost:27017")
 	logger.Info("collection name: ", client.Database.Collection("user").GetCollectionName())
 	logger.Info("collection name: ", client.Database.Collection("room").GetCollectionName())
 	_ = client.Close(ctx)
-	//
-	//collClient := getCollClientByOpen(ctx, "mongodb://localhost:27017")
-	//logger.Info("collection name: ", collClient.GetCollectionName())
+
+	collClient := getCollClientByOpen(ctx, "mongodb://localhost:27017")
+	logger.Info("collection name: ", collClient.GetCollectionName())
 
 	time.Sleep(3 * time.Second)
 }
